@@ -14,7 +14,7 @@ from io import BytesIO
 
 logger = logging.getLogger(__name__)
 
-EXCEL_FILE_PATH = os.path.join(os.path.dirname(__file__), 'BD_Empleados.xlsx')
+EXCEL_FILE_PATH = os.path.join(os.path.dirname(__file__), 'BD_Empleados3.xlsx')
 
 
 class RegistroAsistenciaViewSet(viewsets.ModelViewSet):
@@ -179,7 +179,7 @@ def generar_reporte_ausencias_semanal(request):
 
     # Obtener el lunes de la semana actual (o anterior si es domingo)
     inicio_semana = hoy - timedelta(days=dia_actual + 7)
-    dias_semana = [inicio_semana + timedelta(days=i) for i in range(6)]  # Lunes a Sábado
+    dias_semana = [inicio_semana + timedelta(days=i) for i in range(7)]  # Lunes a Sábado
 
     personas = Persona.objects.all()
     data = []
@@ -233,6 +233,7 @@ def generar_reporte_ausencias_semanal(request):
         'Thursday': 'Jueves',
         'Friday': 'Viernes',
         'Saturday': 'Sábado',
+        'Sunday': 'Domingo',
     }, inplace=True)
 
     output = BytesIO()

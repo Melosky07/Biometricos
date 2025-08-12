@@ -3,10 +3,10 @@ from asistencia.models import Persona
 from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
-    help = 'Carga datos desde DB_Empleados.xlsx al modelo Persona'
+    help = 'Carga datos desde DB_Empleados3.xlsx al modelo Persona'
 
     def handle(self, *args, **kwargs):
-        archivo = 'C:/Users/anl-sistemas/Documents/Sebastian/App_Huelleros/backend/asistencia/BD_Empleados2.xlsx'  # <-- cambia esto
+        archivo = 'C:/Users/anl-sistemas/Documents/Sebastian/AppBiometricos2/backend/asistencia/BD_Empleados3.xlsx'  # <-- cambia esto
 
         try:
             df = pd.read_excel(archivo)

@@ -179,11 +179,11 @@
 
 /* Mensajes */
 .success {
-    color: #28a745;
+    color: #333333;
     margin-top: 12px;
     font-weight: bold;
     padding: 10px;
-    background-color: #d4edda;
+    background-color: #02c931;
     border: 1px solid #c3e6cb;
     border-radius: 4px;
 }

@@ -55,7 +55,7 @@ const RegistroAsistencia = () => {
             
             const timeoutId = setTimeout(() => {
                 buscarPersona(nit);
-            }, 800);
+            }, 100);
 
             return () => {
                 clearTimeout(timeoutId);
@@ -129,7 +129,7 @@ const RegistroAsistencia = () => {
                 setCargo('');
                 setMensaje('');
                 setError('');
-            }, 3000);
+            }, 500);
         } catch (error) {
             setError(`Error: ${error.response?.data?.detail || 'Error al registrar'}`);
         }
