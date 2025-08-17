@@ -182,6 +182,7 @@
     color: #333333;
     margin-top: 12px;
     font-weight: bold;
+    font-size: x-large;
     padding: 10px;
     background-color: #02c931;
     border: 1px solid #c3e6cb;
@@ -241,42 +242,89 @@
 
 /* Mini vista */
 .mini-vista {
-    width: 100%;
-    max-width: 500px;
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 2; /* ✅ Ahora ocupa el doble de espacio que las instrucciones */
+    background: #eef9f1;
+    border: 2px solid #28a745;
+    padding: 25px; /* ✅ Más espacio interno */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     font-family: Arial, sans-serif;
+    font-size: 18px; /* ✅ Texto más grande */
 }
 
+/* Encabezado más llamativo */
 .mini-vista h4 {
-    margin: 0 0 10px;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: bold;
-    color: #333;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
+    color: #155724;
+    border-bottom: 3px solid #28a745;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
 }
 
+/* Cada registro más espacioso y legible */
 .registro-item {
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .registro-item p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #555;
+    margin: 8px 0;
+    font-size: 18px; /* ✅ Texto más grande para lectura fácil */
+    color: #333;
+    font-weight: 500;
+}
+
+.registro-item strong {
+    color: #000;
 }
 
 .registro-item hr {
-    margin: 10px 0;
+    margin: 15px 0;
     border: none;
-    height: 1px;
-    background-color: #dee2e6;
+    height: 2px;
+    background-color: #c8e6c9;
 }
+
+.contenido-inferior {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .instrucciones {
+    flex: 1;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .instrucciones h4 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .instrucciones ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .instrucciones li {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  /* .mini-vista {
+    flex: 1;
+    background: #eef9f1;
+    border: 1px solid #c8e6c9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  } */
+
+
 
 /* Responsive */
 @media (max-width: 768px) {

@@ -129,7 +129,7 @@ const RegistroAsistencia = () => {
                 setCargo('');
                 setMensaje('');
                 setError('');
-            }, 500);
+            }, 100);
         } catch (error) {
             setError(`Error: ${error.response?.data?.detail || 'Error al registrar'}`);
         }
@@ -232,7 +232,6 @@ const RegistroAsistencia = () => {
     return (
         <div className="container">
             <div className="form-container">
-                {/* <h1>ELABORADO SEBASTIAN DAVID MELO DIAZ </h1> */}
                 <h2>Registro de Asistencia</h2>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="input-container">
@@ -255,16 +254,7 @@ const RegistroAsistencia = () => {
                             </div>
                         )}
                     </div>
-
-                    {/* Mostrar información del empleado si se encontró
-                    {nombre && (
-                        <div className="employee-info">
-                            <p><strong>Nombre:</strong> {nombre}</p>
-                            <p><strong>Cargo:</strong> {cargo}</p>
-                            <p><strong>Dependencia:</strong> {dependencia}</p>
-                        </div>
-                    )} */}
-
+    
                     <button 
                         type="submit" 
                         className="button" 
@@ -273,69 +263,47 @@ const RegistroAsistencia = () => {
                         {isScanning ? 'Procesando...' : `Registrar ${nombre ? 'Asistencia' : ''}`}
                     </button>
                 </form>
-
+    
                 {mensaje && <p className="success">{mensaje}</p>}
                 {error && <p className="error">{error}</p>}
-
-                {/* <button onClick={descargarExcel} className="download-button">
-                    Descargar Reporte Excel
-                </button> */}
-
-                {/* <button onClick={descargarAusentes} className="download-button">
-                    Descargar Ausentes (Hoy)
-                </button> */}
-
-                
-
             </div>
-
-            {/* ✅ Tabla completa */}
-            <div className="table-container">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Hora Entrada</th>
-                            <th>Hora Salida</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {registros.slice(-10).map((registro) => (
-                            <tr key={registro.NIT || registro.id}>
-                                <td>{registro.persona_nombre}</td>
-                                <td>{registro.fecha}</td>
-                                <td>{registro.hora_entrada}</td>
-                                <td>{registro.hora_salida || '-'}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            {/* ✅ Mini vista solo con el último registro */}
-            {miniVista.length > 0 && (
-                <div className="mini-vista">
-                    <h4>Último Registro</h4>
-                    {miniVista.map((registro) => (
-                        <div key={registro.id} className="registro-item">
-                            <p><strong>Nombre:</strong> {registro.persona_nombre}</p>
-                            <p><strong>Hora Entrada:</strong> {registro.hora_entrada}</p>
-                            <p><strong>Hora Salida:</strong> {registro.hora_salida || '-'}</p>
-                            <hr />
-                        </div>
-                    ))}
+    
+            <div className="contenido-inferior">
+                {/* ✅ Panel de Instrucciones */}
+                <div className="instrucciones">
+                    <h4>📝 Instrucciones</h4>
+                    <ul>
+                        <li>⌛ Espere unos segundos mientras se consulta el registro.</li>
+                        <li>🔄 No ingrese dos veces el mismo código de barras.</li>
+                        <li>⚠️ Si aparece <b>"No registra"</b>, significa que la base de datos aún no se ha actualizado.</li>
+                        {/* <li>📊 Revise el reporte semanal o histórico si necesita validar asistencias.</li> */}
+                        <li>👨‍💻 En caso de error, contacte al área de sistemas.</li>
+                    </ul>
                 </div>
-            )}
-
-                <button onClick={descargarAusenciasSemanales} className="download-button">
-                    Descargar Reporte Semanales
-                </button>
-
-                <button onClick={descargarAusenciasHistorico} className="download-button">
-                    Descargar Reporte Historico
-                </button>
-
+    
+                {/* ✅ Mini vista solo con el último registro */}
+                {miniVista.length > 0 && (
+                    <div className="mini-vista">
+                        <h4>✅ Su Registro</h4>
+                        {miniVista.map((registro) => (
+                            <div key={registro.id} className="registro-item">
+                                <p><strong>Nombre:</strong> {registro.persona_nombre}</p>
+                                <p><strong>Hora Entrada:</strong> {registro.hora_entrada}</p>
+                                <p><strong>Hora Salida:</strong> {registro.hora_salida || '-'}</p>
+                                <hr />
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+    
+            <button onClick={descargarAusenciasSemanales} className="download-button">
+                Descargar Reporte Semanales
+            </button>
+    
+            <button onClick={descargarAusenciasHistorico} className="download-button">
+                Descargar Reporte Historico
+            </button>
         </div>
     );
 };
