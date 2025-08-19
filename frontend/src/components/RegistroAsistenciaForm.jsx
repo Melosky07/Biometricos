@@ -77,7 +77,7 @@ const RegistroAsistencia = () => {
             const timeoutId = setTimeout(() => {
                 buscarPersonaYRegistrar(nit);
                 setIsScanning(false);
-            }, 100); // Pequeña pausa para asegurar que se capture todo el código
+            }, 80); // Pequeña pausa para asegurar que se capture todo el código
 
             return () => clearTimeout(timeoutId);
         }
@@ -129,7 +129,7 @@ const RegistroAsistencia = () => {
                 setCargo('');
                 setMensaje('');
                 setError('');
-            }, 100);
+            }, 900);
         } catch (error) {
             setError(`Error: ${error.response?.data?.detail || 'Error al registrar'}`);
         }
