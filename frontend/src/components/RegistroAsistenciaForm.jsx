@@ -10,6 +10,7 @@ const REPORT_URL = `${API_BASE}/reporte-excel/`;
 const AUSENTES_URL = `${API_BASE}/reporte-ausentes/`;
 const AUSENCIAS_SEMANA_URL = `${API_BASE}/reporte-ausencias-semanal/`;
 const AUSENCIAS_HISTORICO_URL = `${API_BASE}/reporte-ausencias-historico/`;
+const ULTIMO_REGISTRO_URL = `${API_BASE}/ultimo-registro/`;
 
 const RegistroAsistencia = () => {
     const [nit, setNit] = useState('');
@@ -46,6 +47,30 @@ const RegistroAsistencia = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    const fetchUltimoRegistro = async () => {
+        try {
+            const res = await axios.get(ULTIMO_REGISTRO_URL);
+            if (res.data && !res.data.error) {
+                setMiniVista([res.data]);
+            }
+        } catch (err) {
+            console.error("Error al obtener último registro:", err);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+        fetchUltimoRegistro();
+
+        const interval = setInterval(() => {
+            fetchData();
+            fetchUltimoRegistro();
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
+
 
     // ✅ Debounce para la búsqueda automática (solo para entrada manual)
     useEffect(() => {

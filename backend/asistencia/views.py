@@ -14,7 +14,7 @@ from io import BytesIO
 
 logger = logging.getLogger(__name__)
 
-EXCEL_FILE_PATH = os.path.join(os.path.dirname(__file__), 'BD_Empleados3.xlsx')
+EXCEL_FILE_PATH = os.path.join(os.path.dirname(__file__), 'BD_Empleados.xlsx')
 
 
 class RegistroAsistenciaViewSet(viewsets.ModelViewSet):
@@ -319,3 +319,17 @@ def generar_reporte_ausencias_historico(request):
     response['Content-Disposition'] = f'attachment; filename={nombre_archivo}'
 
     return response
+
+
+def ultimo_registro(request):
+    registro = RegistroAsistencia.objects.order_by('-id').first()
+    if registro:
+        data = {
+            "persona_nombre": registro.persona.nombre,
+            "hora_entrada": registro.hora_entrada.strftime("%H:%M:%S") if registro.hora_entrada else None,
+            "hora_salida": registro.hora_salida.strftime("%H:%M:%S") if registro.hora_salida else None,
+            "fecha": registro.fecha.strftime("%d/%m/%Y") if registro.fecha else None,
+        }
+        return JsonResponse(data)
+    else:
+        return JsonResponse({"error": "No hay registros"}, status=404)
